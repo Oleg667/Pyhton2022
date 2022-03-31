@@ -1,10 +1,10 @@
-inputs=list()
-while True:
-    concurrent_line=input("Type something ")
-    if concurrent_line=="exit":
-        break
-    inputs.append(concurrent_line)
-
-
-
-
+# inputs=list()
+# while True:
+#     concurrent_line=input("Type something ")
+#     if concurrent_line=="exit":
+#         break
+#     inputs.append(concurrent_line)
+#
+#
+#
+print('Ясно')
