@@ -5,7 +5,7 @@ init()
 print(Fore.BLACK)
 print(Back.GREEN)
 
-what = input("Что делаем?(+,-):")
+what = input("Что делаем?(+,-,*):")
 print(Back.CYAN)
 
 a = float(input("Введи первое число:"))
@@ -14,9 +14,10 @@ print(Back.YELLOW)
 # c = 0
 if what == "+":
     c = a + b
-
 elif what == "-":
     c = a - b
+elif what == "*":
+    c = a * b
 else:
     c = "Неправильный выбор!"
 
