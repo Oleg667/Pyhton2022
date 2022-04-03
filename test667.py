@@ -62,8 +62,57 @@
 #
 # print("||".join(d.keys()))
 
-title=input("введите название книги")
-name=input("введите имя автора")
-year=int(input("введите год издания"))
-dict={'title':title,'name':name,'ear':year}
-print (dict)
+# title=input("введите название книги")
+# name=input("введите имя автора")
+# year=int(input("введите год издания"))
+# dict={'title':title,'name':name,'ear':year}
+# print (dict)
+# L=input("введите название книги")
+# c = list(set(L))
+# print(len(c))
+# text = input("Введите текст:")
+#
+# unique = list(set(text))
+#
+# print("Количество уникальных символов: ", len(unique))
+#************************************************
+# a = input("Введите первую строку: ")
+# b = input("Введите вторую строку: ")
+#
+# a_set, b_set = set(a.split()), set(b.split()) # используем множественное присваивание
+#
+# print(a_set)
+# print(b_set)
+# a_and_b = a_set.symmetric_difference(b_set)
+#
+# print(a_and_b)
+#********************************************
+# L = ['a', 'b', 'c']
+# print(id(L))
+#
+# L.append('d')
+# print(id(L))
+#*********************************************
+# a = 5
+# b = 3+2
+# aid_bid=id(a)-id(b)
+# print (aid_bid)
+# **********************************************
+# list_1 = ['a', 'b', 'c']
+# list_2 = list_1
+# list_3 = list(list_1)
+# print(list_1)
+# print(list_2)
+# print(list_3)
+# print(list_1 == list_2)
+# print(list_2 == list_3)
+# print(list_1 is list_2)
+# print(list_1 is list_3)
+#*************************************************
+shopping_center = ("Галерея", "Санкт-Петербург", "Лиговский пр., 30", ["H&M", "Zara"])
+list_id_before = id(shopping_center[-1])
+
+shopping_center[-1].append("Uniqlo")
+list_id_after = id(shopping_center[-1])
+
+print(list_id_before == list_id_after)
