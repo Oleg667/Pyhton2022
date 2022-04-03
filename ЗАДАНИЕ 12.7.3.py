@@ -13,6 +13,8 @@ print (list(map(int, deposit)))
 print(f'\nДоход по депозиту составит:\n{banks[0]} банк - {deposit[0]} рублей\n{banks[1]} банк - {deposit[1]} '
       f'рублей\n{banks[2]} банк - {deposit[2]} рублей\n{banks[3]} банк - {deposit[3]} рублей\n')
 
-print('Максимальная сумма, которую вы можете заработать — '+str(max(deposit)))
+print('Максимальная сумма, которую вы можете заработать — '+str(max(deposit))+' рублей')
+max_deposit=max(deposit)
+print('Максимальная сумма, которую Вы можете заработать: {} рублей.'.format(max_deposit))
 
 
