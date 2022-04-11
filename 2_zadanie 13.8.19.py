@@ -79,7 +79,7 @@ print(f'Бесплатных билетов - {vozrast1} шт')
 print(f'Билетов по 990 руб. - {vozrast2} шт')
 print(f'Билетов по 1390 руб. - {vozrast3} шт')
 
-# блок расчета итоговой суммы
+# блок расчета и печати итоговой суммы
 summa=(vozrast2*990+vozrast3*1390)
 if kol_biletov>3:
     summa=float(summa)*0.9
