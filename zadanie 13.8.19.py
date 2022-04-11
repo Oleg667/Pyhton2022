@@ -1,7 +1,17 @@
-# задание 13.8.19
-kol_biletov=int(input('Введите количество билетов которое хотите приобрести? > '))
+#задание 13.8.19
 
-summa=0  # сумма которую нужно заплатить за билеты
+while True:
+    try:
+        kol_biletov=int(input('Введите количество билетов которое хотите приобрести? > '))
+        break
+    except ValueError:
+        print( 'введено некорректное значение, введите целое положительное число')
+        stop=input('если хотите продолжить введите Да иначе Нет >')
+        print(stop)
+        if stop=='Нет':
+            exit()
+
+summa=0  #сумма которую нужно заплатить за билеты
 
 i=1
 while i<=kol_biletov:
@@ -18,3 +28,6 @@ if kol_biletov>3:
     print(f'Итого к оплате за {kol_biletov} бил., с учетом скидки 10%: {summa}')
 else:
     print(f'Итого к оплате за {kol_biletov} бил. : {summa}')
+kol_biletov=int(1)
+c=type(kol_biletov)
+print(c)
