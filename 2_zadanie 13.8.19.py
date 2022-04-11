@@ -11,7 +11,7 @@
 def vvod_int(voz,ost): # функция запроса количества ввода посетителей определенного возраста, с индикацией остатка билетов
     while True:
         try:
-            kol = int(input(f'Введите количество посетителей {voz} осталось {ost} бил. > '))
+            kol = abs(int(input(f'Введите количество посетителей {voz} осталось {ost} бил. > ')))
         except ValueError:
             print('введено некорректное значение, введите целое положительное число')
             stop = input('если хотите продолжить введите Да иначе Нет >')
@@ -39,7 +39,7 @@ raspred=0 # количество расспределенных билетов
 vozrast1=0 # количество посетителей моложе 18 лет
 vozrast2=0 # количество посетителей от 18 до 25
 vozrast3=0 # количество посетителей старше 25
-
+# вспомогательные переменные
 v1 = 0
 v2 = 0
 v3 = 0
@@ -54,15 +54,15 @@ while kol_biletov > raspred:
             vozrast1=v1 + (kol_biletov-raspred)
             break
         else:
+            raspred = raspred + vozrast1
             vozrast1 = vozrast1 + v1
-            raspred=raspred+vozrast1
             vozrast2 = vvod_int("от 18 до 25", kol_biletov-raspred)
             if vozrast2 >= (kol_biletov-raspred):
                 vozrast2=v2+(kol_biletov-raspred)
                 break
             else:
-                vozrast2 = vozrast1 + v2
                 raspred = raspred + vozrast2
+                vozrast2 = vozrast1 + v2
                 vozrast3 = vvod_int("старше 25", kol_biletov-raspred)
                 if vozrast3 >= (kol_biletov - raspred):
                     vozrast3 = v3+(kol_biletov - raspred)
@@ -74,11 +74,9 @@ while kol_biletov > raspred:
                     v2 = vozrast2
                     v3 = vozrast3
 
-
-print(raspred)
-print(vozrast1)
-print(vozrast2)
-print(vozrast3)
+print(f'Бесплатных билетов - {vozrast1} шт')
+print(f'Билетов по 990 руб. - {vozrast2} шт')
+print(f'Билетов по 1390 руб. - {vozrast3} шт')
 
 # блок расчета итоговой суммы
 summa=(vozrast2*990+vozrast3*1390)
