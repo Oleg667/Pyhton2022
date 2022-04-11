@@ -2,15 +2,16 @@
 def vvod_int(voz,ost): # функция запроса количества ввода посетителей определенного возраста, с проверкой остатка билетов
     while True:
         try:
-            kol = int(input(f'Введите количество поситителей {voz} > '))
-            break
+            kol = int(input(f'Введите количество посетителей {voz} осталось {ost} бил. > '))
+            # return kol
+            #break
         except ValueError:
             print('введено некорректное значение, введите целое положительное число')
             stop = input('если хотите продолжить введите Да иначе Нет >')
             print(stop)
             if stop == 'Нет':
                 exit()
-return: kol
+        return kol
 
 
 
@@ -32,30 +33,40 @@ while True:
 # блок ввода количества посетителей определенного возраста
 
 summa=0  #сумма которую нужно заплатить за билеты
-ostatok=0
-vozrast1=0
-vozrast2=0
-vozrast3=0
+raspred=0 # количество расспределенных билетов
+vozrast1=0 # количество посетителей моложе 18 лет
+vozrast2=0 # количество поситителей от 18 до 25
+vozrast3=0 # количество поситителей старше 25
 i=1
-while (kol_biletov - ostatok) > 0:  # если билетов много, то вводить данные по каждому очень долго
-    vozrast1 = int(input(f'Введите количество поситителей младше 18 лет из {kol_biletov-ostatok} > '))
-    if ostatok <= kol_biletov:
-      ostatok = ostatok+vozrast1
-    else:           #если введено число больше чем всего билетов то количество моложе 18 лет равно количеству билетов
-        ostatok=kol_biletov
-        vozrast1=ostatok
-        if ostatok < kol_biletov:
-            vozrast2 = int(input(f'Введите количество поситителей старше 18 но младше 25 лет из {kol_biletov-ostatok} > '))
-            if (ostatok+vozrast2) <= kol_biletov:
-                ostatok = ostatok + vozrast1
-            else:  # если введено число больше чем оставшихся билетов то количество от 18 до 25 лет равно количеству оставшихся билетов билетов
-                vozrast2 = kol_biletov - ostatok
-                ostatok = kol_biletov
+while kol_biletov > raspred:  # если билетов много, то вводить данные по каждому очень долго
+    # while True:
+        vozrast1 = vvod_int("моложе 18",kol_biletov)
+
+        if  vozrast1 >= kol_biletov:
+            vozrast1=kol_biletov
+            break
         else:
+            raspred=raspred+vozrast1
+            vozrast2 = vvod_int("от 18 до 25", raspred)
+            print(raspred)
+            if vozrast2 >= (kol_biletov-raspred):
+                vozrast2=(kol_biletov-raspred)
+                break
+            else:
+                raspred = raspred + vozrast2
+                vozrast2 = (kol_biletov - raspred)
+                vozrast3 = vvod_int("старше 25", raspred)
+                if vozrast3 >= (kol_biletov - raspred):
+                    vozrast3 = (kol_biletov - raspred)
+                    break
+                else:
+                    raspred = raspred + vozrast3
+                    vozrast3 = (kol_biletov - raspred)
+                    print(f'не распределено {kol_biletov-raspred} билетов')
 
-            if ostatok < kol_biletov:
-                vozrast3 = int(input(f'Введите количество поситителей старше 25 лет {kol_biletov-ostatok} > '))
 
+
+# блок расчета итоговой суммы
 if kol_biletov>3:
     summa=float(summa)*0.9
     print(f'Итого к оплате за {kol_biletov} бил., с учетом скидки 10%: {summa}')
