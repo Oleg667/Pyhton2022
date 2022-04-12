@@ -68,7 +68,7 @@ while kol_biletov > raspred:
                     break
                 else:
                     raspred = raspred + vozrast3
-                    print(f'не распределено {kol_biletov-raspred} билетов')
+                    print(f'не распределено {kol_biletov-raspred} бил.')
                     v1 = vozrast1
                     v2 = vozrast2
                     v3 = vozrast3
