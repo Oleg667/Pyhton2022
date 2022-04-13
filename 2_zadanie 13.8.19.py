@@ -21,10 +21,10 @@ def vvod_int(voz,ost): # функция запроса количества вв
                 exit()
         return kol
 
-# ввод количества билетов с проверкой что ввели целое положительное число
+# ввод количества билетов с проверкой что ввели целое число, если 0 или отрицательное то стоимость ноль
 while True:
     try:
-        kol_biletov=int(input('Введите количество билетов которое хотите приобрести? > '))
+        kol_biletov=abs(int(input('Введите количество билетов которое хотите приобрести? > ')))
         break
     except ValueError:
         print( 'введено некорректное значение, введите целое положительное число')
@@ -45,8 +45,6 @@ v1 = 0
 v2 = 0
 v3 = 0
 
-
-i=1
 while kol_biletov > raspred:
     # while True:
         vozrast1 = vvod_int("моложе 18",kol_biletov-raspred)
@@ -70,7 +68,7 @@ while kol_biletov > raspred:
                     break
                 else:
                     raspred = raspred + vozrast3
-                    print(f'не распределено {kol_biletov-raspred} билетов')
+                    print(f'не распределено {kol_biletov-raspred} бил.')
                     v1 = vozrast1
                     v2 = vozrast2
                     v3 = vozrast3
