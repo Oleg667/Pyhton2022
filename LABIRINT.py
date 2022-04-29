@@ -54,6 +54,7 @@ def printPath(pathArr, finPoint):
 labirint = []
 with open("labirint.txt") as myFile:
     for line in myFile:
+<<<<<<< HEAD
 #        print(line)
         lineL=list(line)
         lineL.pop()
@@ -64,7 +65,7 @@ with open("labirint.txt") as myFile:
 
         labirint.append(lineL)
 
-print(list(labirint))
+print(list(labirint)) 
 
 ii = int(0)
 pozOut = (0,0)
@@ -84,6 +85,20 @@ for i in labirint:
             labirint[ii][jj] = 0
             pozOut = (ii, jj)
             print(pozOut)
+=======
+        labirint.append(line.replace('\n', '').split(' '))
+
+ii = 0
+for i in labirint:
+    jj = 0
+    for j in i:
+        if j == 'A':
+            labirint[ii][jj] = 1
+            pozIn = (ii, jj)
+        elif j == 'B':
+            labirint[ii][jj] = 0
+            pozOut = (ii, jj)
+>>>>>>> origin/master
         elif j == '1':
             labirint[ii][jj] = -1
         else:
@@ -91,7 +106,10 @@ for i in labirint:
         jj += 1
     ii += 1
 
+<<<<<<< HEAD
 print(pozOut)
+=======
+>>>>>>> origin/master
 if not found(labirint, pozOut):
     print("Путь не найден!")
 else:
