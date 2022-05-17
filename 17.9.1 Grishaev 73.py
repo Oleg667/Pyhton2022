@@ -41,10 +41,6 @@ while True:
     try:
         numeral = int(input('Введитите целое число от 0 до 100 > '))
 
-        array_list = sort(array_list) #запоминаем минимальное и максимальное значение
-        array_max = array_list[-1]
-        array_min = array_list[0]
-
         array_list.append(numeral) #добавляем введенное число в список
         array_sort = sort(array_list)
 
@@ -55,18 +51,18 @@ while True:
         print('Ошибка! это не целое число.')
         exit()
     except Exception: # проверка что число в заданном интервале
-        print(numeral,'Ошибка! число не в интервале от 0 до 100.')
+        print('Ошибка! число не в интервале от 0 до 100.')
         exit()
 
 
 numeral_in = int(binary_search(array_sort, numeral, 0, len(array_sort)))
 
-if numeral_in < array_min:
+if numeral <= array_sort[0]:
     print('Все числа из последовательности больше заданного числа')
 
-elif numeral_in == array_max or numeral_in == array_max:
+elif numeral >= array_sort[-1]:
     print('Все числа из последовательности меньше или равны заданному числу')
 
 else:
-    print(f'\nномер позиции элемента, который меньше введенного числа,\n а следующий за ним больше или равен этому числу.:', (numeral_in-2))
+    print(f'\nномер позиции элемента, который меньше введенного числа,\n а следующий за ним больше или равен этому числу.:', (numeral_in-1))
 

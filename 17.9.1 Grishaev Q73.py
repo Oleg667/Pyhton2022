@@ -55,7 +55,7 @@ sorted_list = merge_sort(my_list)
 
 if selected_number < sorted_list[0]:
     print('Все числа из последовательности больше заданного числа')
-elif selected_number > sorted_list[-1]:
+elif selected_number > sorted_list[-1] or selected_number == sorted_list[-1]:
     print('Все числа из последовательности меньше заданного числа')
 else:
     position = binary_search(sorted_list, selected_number, 0, len(sorted_list))
