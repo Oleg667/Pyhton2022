@@ -25,7 +25,8 @@ class LinkedList:  # класс списка
             if pointer is not None:  # если он существует добавляем пробел
                 R += ' '
         return R
-    def pushleft(self, value):#добавляет элемент в начало
+
+    def pushleft(self, value):
         if self.first is None:
             self.first = Node(value)
             self.last = self.first
@@ -33,7 +34,7 @@ class LinkedList:  # класс списка
             new_node = Node(value, self.first)
             self.first = new_node
 
-    def pushright(self, value):#добавляет элемент в конец
+    def pushright(self, value):
         if self.first is None:
             self.first = Node(value)
             self.last = self.first
@@ -41,3 +42,44 @@ class LinkedList:  # класс списка
             new_node = Node(value)
             self.last.next = new_node
             self.last = new_node
+
+    def popright(self):
+        if self.first is None:
+            return None
+        elif self.first == self.last:
+            node = self.first  # сохраняем его
+            self.__init__()  # очищаем
+            return node  # и возвращаем сохраненный элемент
+        else:
+            node = self.last  # сохраняем последний
+            pointer = self.first  # создаем указатель
+        while pointer.next is not node:
+            pointer = pointer.next
+            pointer.next = None  # обнуляем указатели, чтобы
+            self.last = pointer
+            return node  # возвращаем сохраненный
+
+    def popleft(self):
+        if self.first is None:
+            return None
+        elif self.first == self.last:
+            node = self.first  # сохраняем его
+            self.__init__()  # очищаем
+            return node  # и возвращаем сохраненный элемент
+        else:
+            node = self.first  # сохраняем первый элемент
+            self.first = self.first.next  # меняем указатель на первый элемент
+            return node  # возвращаем сохраненный
+
+
+LL = LinkedList()
+
+LL.pushright(1)
+LL.pushleft(2)
+LL.pushright(3)
+LL.popright()
+LL.pushleft(4)
+LL.pushright(5)
+LL.popleft()
+
+print(LL)
