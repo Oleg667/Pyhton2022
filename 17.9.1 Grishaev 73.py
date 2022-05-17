@@ -8,7 +8,7 @@ def sort(array):#функция сортировки
     return array
 
 
-def binary_search(array, element, left, right):
+def binary_search(array, element, left, right): #поиск номера позиции элемента
     if left > right:
         return False
 
@@ -23,54 +23,50 @@ def binary_search(array, element, left, right):
 
 while True:
     try:
-        array = input('Введите, пожалуйста, через пробел некоторые целые числа от 0 до 100: ').split()
+        array = input('Введите через пробел некоторые целые числа от 0 до 100 > ').split()
         array_list = list(map(int, array))
-        array_sort = sort(array_list)
-        for i in array_sort:
+
+        for i in array_list:
             if i < 0 or i > 100:
                 raise Exception
         break
     except ValueError:
-        print('Введите целые числа, через пробел, от 0 да 100.')  # проверка если ввели не число
+        print('Ошибка, вводить надо только целые числа от 0 да 100.')  # проверка если ввели не число
         exit()
     except Exception:
-        print('Введите числа не меньше 0 и не больше 100.') # проверка на попадание чисел в интервал от 9 до 100
+        print('Ошибка число не в интервале от 0 до 100.') # проверка на попадание чисел в интервал от 9 до 100
         exit()
 
 while True:
     try:
-        numeral = int(input('Введите, пожалуйста, искомое число: '))
-        array_sort.append(numeral)
-        array_sort = sort(array_sort)
+        numeral = int(input('Введитите целое число от 0 до 100 > '))
+
+        array_list = sort(array_list) #запоминаем минимальное и максимальное значение
+        array_max = array_list[-1]
+        array_min = array_list[0]
+
+        array_list.append(numeral) #добавляем введенное число в список
+        array_sort = sort(array_list)
+
         if numeral < 0 or numeral > 100:
             raise Exception
         break
-    except ValueError:
-        print('Введите, пожалуйста, ЦЕЛОЕ ЧИСЛО.')  # Отслеживается ошибка значений - число с запятой..
+    except ValueError:# проверка что введено целое число
+        print('Ошибка! это не целое число.')
         exit()
-    except Exception:
-        print('Введите число не меньше 0 и не больше 100.')
+    except Exception: # проверка что число в заданном интервале
+        print(numeral,'Ошибка! число не в интервале от 0 до 100.')
         exit()
 
-print(f'Отсортированный числовой массив: {array_sort}.')
 
-numeral_in = binary_search(array_sort, numeral, 0, len(array_sort))
-small_in = numeral_in - 1
-big_in = numeral_in + 1
+numeral_in = int(binary_search(array_sort, numeral, 0, len(array_sort)))
 
-print(f'Индекс вашего числа в массиве: {numeral_in}.')
+if numeral_in < array_min:
+    print('Все числа из последовательности больше заданного числа')
 
-if small_in in range(len(array_sort)):
-    print(f'Индекс предыдущего меньшего числа: {small_in}.')
+elif numeral_in == array_max or numeral_in == array_max:
+    print('Все числа из последовательности меньше или равны заданному числу')
+
 else:
-    print(f'Индекс предыдущего меньшего числа: {small_in}, вне (меньше) диапазона.')
+    print(f'\nномер позиции элемента, который меньше введенного числа,\n а следующий за ним больше или равен этому числу.:', (numeral_in-2))
 
-if big_in in range(len(array_sort)):
-    print(f'Индекс следующего большего числа: {big_in}.')
-else:
-    print(f'Индекс предыдущего большего числа: {big_in}, вне (больше) диапазона.')
-
-if array_sort[numeral_in] == array_sort[big_in]:
-    print('Ваше число равно следующему числу.')
-else:
-    ...
